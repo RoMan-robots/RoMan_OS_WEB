@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+    color:white;
+    font-family: "Poetsen One", sans-serif;
+}
+.boot-elements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+.uefi-elements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    flex-direction: column;
+}
