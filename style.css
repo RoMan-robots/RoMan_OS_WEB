@@ -16,3 +16,11 @@ body {
     margin-top: 20%;
     flex-direction: column;
 }
+.error-screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    flex-direction: column;
+    color: red;
+}
