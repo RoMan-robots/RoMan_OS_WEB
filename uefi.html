@@ -8,21 +8,20 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
     </style>
-    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="style.css">
    <title>UEFI Pro</title>
 </head>
 
 <body>
     <div class="uefi-elements">
-        <h1>UEFI Pro v1.0</h1>
+        <h1>UEFI Pro Boot Menu</h1>
         <h3>Виберіть стартовий девайс</h3>
-        <select name="Select boo device" class="select-boot">
-            <option value="not-selected">Не вибрано</option>
+        <select name="Select boot device" class="select-boot">
             <option value="ssd">Samsung 970 EVO Plus SSD 512GB</option>
             <option value="hdd">Seagate BarraCuda HDD 4TB</option>
             <option value="usb">Verbatium Executive USB 16GB</option>
         </select>
-        <button class="btn btn-success">Обрати</button>
+        <button class="btn btn-success uefi-button" onclick="runFromUEFI()">Обрати</button>
     </div>
 </body>
 
