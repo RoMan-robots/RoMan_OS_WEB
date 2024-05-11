@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');</style>
+    <link rel="stylesheet" href="style.css">
+    <script src="installerScript.js" defer></script>
+    <title>RoMan OS Installer</title>
 </head>
-<body>
-    
+<body class="installer">
+    <div class="installer-div">
+        <p class="close" onclick="reboot()">x</p>
+        <div class="installer-div1">
+            <h2>Вітаємо в інсталяторі RoMan OS!</h2>
+            <button id="continue1">Продовжити</button>
+        </div>
+        <div class="installer-div2">
+            <h2>Умови використання RoMan OS</h2>
+            <p>Дана операційна система не є справжньою і їй не можна повноцінно користуватись. Її не можна сприймати всерйоз.</p>
+            <button id="back1">Назад</button>
+            <button id="continue2">Приймаю умови</button>
+        </div>
+        <div class="installer-div3">
+            <h2>Оберіть диск для завантаження:</h2>
+            <select name="Disk Select" class="disk-select">
+                <option value="hdd">Seagate BarraCuda HDD 4TB</option>
+                <option value="ssd">Samsung 970 EVO Plus SSD 128GB</option>
+            </select>
+            <p>Для встановлення RoMan OS потрібно 10GB</p>
+            <button id="back2">Назад</button>
+            <button id="continue3">Завантажити RoMan OS</button>
+        </div>
+        <div class="installing-os">
+            <h2>Валідування інформації</h2>
+            <progress id="validate-info" value="0" max="15"></progress>
+            <h2>Копіювання файлів</h2>
+            <progress id="copy-files" value="0" max="70"></progress>
+            <h2>Встановлення RoMan OS</h2>
+            <progress id="installing-os" value="0" max="120"></progress>
+            <h2>Встановлення драйверів</h2>
+            <progress id="installing-drivers" value="0" max="25"></progress>
+            <h2>Встановлення оновлень</h2>
+            <progress id="installing-updates" value="0" max="40"></progress>
+        </div>
+        <div class="reload">
+            <h2>Вітаю! Ви встановили RoMan OS!</h2>
+            <p>Для продовження потрібне перезавантаження</p>
+            <button onclick="reboot()">Перезавантажити</button>
+        </div>
+    </div>
 </body>
 </html>

@@ -2,25 +2,45 @@ body {
     background-color: black;
     color:white;
     font-family: "Poetsen One", sans-serif;
-}
-.boot-elements {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+.boot-elements {
     margin-top: 10%;
 }
 .uefi-elements {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 20%;
-    flex-direction: column;
 }
 .error-screen {
     display: none;
-    justify-content: center;
-    align-items: center;
     margin-top: 20%;
-    flex-direction: column;
     color: red;
+}
+.installer {
+    background-image: url("/bg.png");;
+    margin-top: 12%;
+}
+.installer-div {
+     background: rgba( 0, 0, 0, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 500px;
+}
+.installer-div2, .installer-div3, .installing-os, .reload {
+    display: none;
+}
+.close {
+    background-color: red;
+    color: black;
+    font-size: 1.5rem;
+    display:flex;
+    width: 25px;
+    height: 27px;
+    margin: 0px;
+    cursor: pointer;
 }
