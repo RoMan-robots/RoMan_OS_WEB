@@ -6,9 +6,9 @@ function runFromUEFI(){
         window.location.href = '/installer.html';
     } else {
         document.querySelector(".uefi-elements").style.display = "none"
-        document.querySelector(".error-screen").style.display = "flex"
+        document.querySelector(".error-screen").style.display = "block"
     }
 }
 function reboot(){
     window.location.href = '/';
-}
+} 
