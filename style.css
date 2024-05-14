@@ -57,3 +57,6 @@ body {
    border: 1px solid rgba( 255, 255, 255, 0.18 );
    width: 600px;
 }
+.oobe2, .oobe3, .wi-fi-error-screen, .oobe4, .oobe5, .oobe6, .oobe7, .oobe8{
+    display: none;
+}
