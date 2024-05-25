@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>RoMan OS</title>
+</head>
+<body class="desktop">
+    <div class="dock">
+        <img src="pcIcon.png" alt="" width="100px" onclick="openApp('pc')">
+        <img src="calcIcon.png" alt="" width="100px" onclick="openApp('calc')">
+        <img src="wwwIcon.png" alt="" width="100px" onclick="openApp('www')">
+        <img src="newsIcon.png" alt="" width="100px" onclick="openApp('news')">
+    </div>
+    <div id="pc" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'pc')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('pc')">☐</span>
+                <span class="close" onclick="closeApp('pc')">x</span>
+            </div>
+            <span class="app-title">PC Menu</span>
+        </div>
+        <div class="app-content">
+            <h1>Вітаю в RoMan OS, <span class="admin-name"></span>!</h1>
+            <h2>Обреріть категорію, щоб продовжити</h2>
+            <button>Файли</button>
+            <button>Усі програми</button>
+            <button>Налаштування</button>
+        </div>
+    </div>
+    <div id="calc" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'calc')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('calc')">☐</span>
+                <span class="close" onclick="closeApp('calc')">x</span>
+            </div>
+            <span class="app-title">Calculator</span>
+        </div>
+        <div class="app-content">
+            <!-- Calculator content here -->
+        </div>
+    </div>
+    <div id="www" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'www')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('www')">☐</span>
+                <span class="close" onclick="closeApp('www')">x</span>
+            </div>
+            <span class="app-title">WWW Browser</span>
+        </div>
+        <div class="app-content">
+            <!-- Browser content here -->
+        </div>
+    </div>
+    <div id="news" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'news')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('news')">☐</span>
+                <span class="close" onclick="closeApp('news')">x</span>
+            </div>
+            <span class="app-title">News</span>
+        </div>
+        <div class="app-content">
+            <!-- News content here -->
+        </div>
+    </div>
+    <script src="desktopScript.js"></script>
+</body>
+</html>

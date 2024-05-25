@@ -24,6 +24,7 @@ function nextStep(step) {
             alert("Будь ласка, заповніть повне ім'я та ім'я адміністратора");
             return;
         }
+        localStorage.setItem('adminName', username);
         setInterval(()=>{
             nextStep(step +1)
         }, 3500);
