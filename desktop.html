@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="desktopScript.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
     </style>
     <link rel="stylesheet" href="style.css">
     <title>RoMan OS</title>
 </head>
+
 <body class="desktop">
     <div class="dock">
         <img src="pcIcon.png" alt="" width="100px" onclick="openApp('pc')">
@@ -26,22 +29,57 @@
         </div>
         <div class="app-content">
             <h1>Вітаю в RoMan OS, <span class="admin-name"></span>!</h1>
-            <h2>Обреріть категорію, щоб продовжити</h2>
-            <button>Файли</button>
-            <button>Усі програми</button>
-            <button>Налаштування</button>
+            <h2>Оберіть категорію, щоб продовжити</h2>
+            <div class="menu-buttons">
+                <button class="menu-button">
+                    <img src="folderIcon.png" alt="Файли" onclick="openApp('files')">
+                    Файли
+                </button>
+                <button class="menu-button">
+                    <img src="appsIcon.png" alt="Програми">
+                    Програми
+                </button>
+                <button class="menu-button">
+                    <img src="settingsIcon.png" alt="Налаштування">
+                    Налаштування
+                </button>
+                <button class="menu-button">
+                    <img src="aboutIcon.png" alt="Про комп'ютер" onclick="openApp('about')">
+                    Про комп'ютер
+                </button>
+            </div>
         </div>
     </div>
     <div id="calc" class="app-window">
         <div class="app-header" onmousedown="startDrag(event, 'calc')">
             <div class="header-buttons">
-                <span class="expand" onclick="toggleFullScreen('calc')">☐</span>
                 <span class="close" onclick="closeApp('calc')">x</span>
             </div>
             <span class="app-title">Calculator</span>
         </div>
         <div class="app-content">
-            <!-- Calculator content here -->
+            <div class="calculator">
+                <div class="display" id="calc-display">0</div>
+                <div class="buttons">
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('.')">.</button>
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="calculateResult()">=</button>
+                    <button onclick="appendToDisplay('0')">0</button>
+                </div>
+            </div>
         </div>
     </div>
     <div id="www" class="app-window">
@@ -53,7 +91,12 @@
             <span class="app-title">WWW Browser</span>
         </div>
         <div class="app-content">
-            <!-- Browser content here -->
+            <h1>WWW Browser</h1>
+            <h2>Швидкий, надійний, вбудований</h2>
+            <h3>Введіть сайт, до якого хочете перейти</h3>
+            <input type="text" id="browser-url" placeholder="Enter URL" />
+            <button id="go" onclick="loadURL()">Почати</button>
+            <iframe id="browser-frame" src="" style="width:100%; height:80vh;"></iframe>
         </div>
     </div>
     <div id="news" class="app-window">
@@ -65,9 +108,60 @@
             <span class="app-title">News</span>
         </div>
         <div class="app-content">
-            <!-- News content here -->
+            <h1>Новини станом на <span id="current-date-time"></span></h1>
         </div>
     </div>
-    <script src="desktopScript.js"></script>
+    <div id="files" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'files')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('files')">☐</span>
+                <span class="close" onclick="closeApp('files')">x</span>
+            </div>
+            <span class="app-title">Files</span>
+        </div>
+        <div class="app-content">
+            <div class="control-panel">
+                <div class="change-view">
+                    <p>Показувати файли як:</p>
+                    <button onclick="changeView('list')">Список</button>
+                    <button onclick="changeView('grid')">Сітка</button>
+                </div>
+                <div class="sort">
+                    <p>Сортувати файли за:</p>
+                    <button onclick="sortFiles('name')">Сортувати за іменем</button>
+                    <button onclick="sortFiles('date')">Сортувати за датою</button>
+                </div>
+                <input type="text" id="current-path" value="C:/" readonly>
+            </div>
+            <div class="file-list">
+                <h1>Вітаємо у файлах!</h1>
+                <h2>Останні використані файли:</h2>
+            </div>
+            <div class="categories">
+                <h2>Доступні категорії:</h2>
+                <button onclick="openFolder('C:/')">C:</button>
+                <button onclick="openFolder('System')">Системні</button>
+                <button onclick="openFolder('Desktop')">Робочий стіл</button>
+            </div>
+        </div>
+    </div>
+    <div id="about" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'about')">
+            <div class="header-buttons">
+                <span class="close" onclick="closeApp('about')">x</span>
+            </div>
+            <span class="app-title">About PC</span>
+        </div>
+        <div class="app-content">
+            <h1>RoMan OS 1.0 beta</h1>
+            <h2>Від RoMan Devs Inc. 2024-2024. Усі права захищені.</h2>
+            <h3>Характеристики RoMan PC Emulator:</h3>
+            <ul>
+                <li>GPU: GeForce RTX 4060</li>
+                <li>CPU: Intel Core i5-12400F</li>
+            </ul>
+        </div>
+    </div>
 </body>
+
 </html>
