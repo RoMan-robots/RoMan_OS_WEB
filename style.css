@@ -94,6 +94,28 @@ body {
     overflow: auto;
     user-select: none;
 }
+.control {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    margin-left: 92%;
+}
+
+.info {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    margin-left: 94%;
+    flex-direction: column;
+}
 
 .full-screen .dock {
     opacity: 0.07;
@@ -157,6 +179,7 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 20px;
 }
 
 .app-title {
@@ -195,6 +218,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: white;
 }
 
 .menu-button img {
@@ -254,6 +278,12 @@ body {
     margin: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.apps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
 .buttons {

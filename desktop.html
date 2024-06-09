@@ -19,6 +19,15 @@
         <img src="wwwIcon.png" alt="" width="100px" onclick="openApp('www')">
         <img src="newsIcon.png" alt="" width="100px" onclick="openApp('news')">
     </div>
+    <div class=""></div>
+    <div class="control">
+        hbhhb
+    </div>
+    <div class="info">
+        <p class="date">11.11.1111</p>
+        <p class="time">11:11</p>
+
+    </div>
     <div id="pc" class="app-window">
         <div class="app-header" onmousedown="startDrag(event, 'pc')">
             <div class="header-buttons">
@@ -31,11 +40,11 @@
             <h1>Вітаю в RoMan OS, <span class="admin-name"></span>!</h1>
             <h2>Оберіть категорію, щоб продовжити</h2>
             <div class="menu-buttons">
-                <button class="menu-button">
-                    <img src="folderIcon.png" alt="Файли" onclick="openApp('files')">
+                <button class="menu-button" onclick="openApp('files')">
+                    <img src="folderIcon.png" alt="Файли">
                     Файли
                 </button>
-                <button class="menu-button">
+                <button class="menu-button" onclick="openApp('all-programs')">
                     <img src="appsIcon.png" alt="Програми">
                     Програми
                 </button>
@@ -43,8 +52,8 @@
                     <img src="settingsIcon.png" alt="Налаштування">
                     Налаштування
                 </button>
-                <button class="menu-button">
-                    <img src="aboutIcon.png" alt="Про комп'ютер" onclick="openApp('about')">
+                <button class="menu-button" onclick="openApp('about')">
+                    <img src="aboutIcon.png" alt="Про комп'ютер">
                     Про комп'ютер
                 </button>
             </div>
@@ -121,17 +130,10 @@
         </div>
         <div class="app-content">
             <div class="control-panel">
-                <div class="change-view">
-                    <p>Показувати файли як:</p>
-                    <button onclick="changeView('list')">Список</button>
-                    <button onclick="changeView('grid')">Сітка</button>
+                <div class="current-path">
+                    <p>Перейти до</p>
+                    <input type="text" id="current-path" value="C:/" readonly>
                 </div>
-                <div class="sort">
-                    <p>Сортувати файли за:</p>
-                    <button onclick="sortFiles('name')">Сортувати за іменем</button>
-                    <button onclick="sortFiles('date')">Сортувати за датою</button>
-                </div>
-                <input type="text" id="current-path" value="C:/" readonly>
             </div>
             <div class="file-list">
                 <h1>Вітаємо у файлах!</h1>
@@ -159,7 +161,53 @@
             <ul>
                 <li>GPU: GeForce RTX 4060</li>
                 <li>CPU: Intel Core i5-12400F</li>
+                <li>RAM: 16GB Kingston Fury RGB 3200Mhz DDR4 2x</li>
+                <li>ROM: Samsung 970 EVO Plus SSD 128GB</li>
+                <li>ROM2: Seagate BarraCuda HDD 4TB</li>
             </ul>
+        </div>
+    </div>
+    <div id="all-programs" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'all-programs')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('all-programs')">☐</span>
+                <span class="close" onclick="closeApp('all-programs')">x</span>
+            </div>
+            <span class="app-title">All Programs</span>
+        </div>
+        <div class="app-content">
+            <h1>Усі встановлені програми:</h1>
+            <p>Примітка: програмами RoMan OS рахує лише з розширенням .roa, або .rosa та в папці програмия</p>
+            <div class="apps">
+                <button class="menu-button" onclick="openApp('settings')">
+                    <img src="settingsIcon.png" alt="Налаштування">
+                    Налаштування
+                </button>
+                <button class="menu-button" onclick="openApp('files')">
+                    <img src="folderIcon.png" alt="Файли">
+                    Файли
+                </button>
+                <button class="menu-button" onclick="openApp('www')">
+                    <img src="wwwIcon.png" alt="WWW Браузер">
+                    WWW Браузер
+                </button>
+                <button class="menu-button" onclick="openApp('vscode')">
+                    <img src="vscodeIcon.png" alt="VSCode">
+                    Visual Studio Code
+                </button>
+                <button onclick="openApp('calc')" class="menu-button">
+                    <img src="calcIcon.png" alt="Калькулятор">
+                    Калькулятор
+                </button>
+                <button onclick="openApp('news')" class="menu-button">
+                    <img src="newsIcon.png" alt="Новини">
+                    Новини
+                </button>
+                <button onclick="openApp('notes')" class="menu-button">
+                    <img src="" alt="Нотатки">
+                    Нотатки
+                </button>
+            </div>
         </div>
     </div>
 </body>
