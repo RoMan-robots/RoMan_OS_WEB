@@ -102,10 +102,14 @@ body {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     display: flex;
-    margin-left: 92%;
+    margin-top: 15px;
+    height: 37px;
+    width: 37px;
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
 }
-
-.info {
+.date-time {
     background: rgba(0, 0, 0, 0.4);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(10.5px);
@@ -113,8 +117,46 @@ body {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     display: flex;
-    margin-left: 94%;
+}
+
+.info {
+    display: flex;
+    margin-left: 91%;
+    flex-direction: row-reverse;
+    height: 70px;
+    z-index: 1000;
+}
+
+.full-screen .info {
+    position: absolute;
+    top: 0.04px;
+    right: 3px;
+    margin-left: 0;
+    align-items: flex-start;
+}
+
+.home {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: none;
+    margin-left: 85%;
+    margin-bottom: 0%;
     flex-direction: column;
+    height: 93vh;
+    z-index: 1000;
+    position: absolute;
+    top: 60px;
+}
+.control-panel {
+    flex-direction: column;
+}
+
+.widgets img {
+    width: 67%;
 }
 
 .full-screen .dock {
@@ -247,13 +289,11 @@ body {
     border: 2px solid white;
     border-radius: 5px;
 }
-
 .categories {
-    text-align: left;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-items: flex-start;
+    align-items: end;
+    justify-items: center;
     width: 100%;
     height: 100%;
 }
@@ -278,6 +318,10 @@ body {
     margin: 20px;
     display: flex;
     flex-direction: column;
+}
+
+#current-path {
+    width: 400px;
 }
 
 .apps {
@@ -305,6 +349,26 @@ body {
 
 .buttons button:hover {
     background-color: rgba(255, 255, 255, 0.4);
+}
+
+#notes .app-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+#notes-input {
+    width: 100%;
+    height: 90%;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    background-color: black;
+    color: white;
 }
 
 .full-screen {

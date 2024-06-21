@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
-  const reason = new URLSearchParams(window.location.search).get('reason');
+  const reason = localStorage.getItem("reason");
     setTimeout(function() {
         if(reason == "oobe") {
           window.location.href = '/oobe.html'

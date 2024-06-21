@@ -19,15 +19,28 @@
         <img src="wwwIcon.png" alt="" width="100px" onclick="openApp('www')">
         <img src="newsIcon.png" alt="" width="100px" onclick="openApp('news')">
     </div>
-    <div class=""></div>
-    <div class="control">
-        hbhhb
-    </div>
     <div class="info">
-        <p class="date">11.11.1111</p>
-        <p class="time">11:11</p>
-
+        <div class="control">
+            <div onclick="toggleHome()">🎚️</div>
+        </div>
+        <p class="date-time">17:00 <br> 11.06.2024</p>
     </div>
+    <div class="home">
+        <div class="control-panel">
+            <h2>Центр керування</h2>
+            <p>Звук</p>
+            <input type="range" id="volume-slider" min="0" max="100" value="50" oninput="adjustVolume(this.value)">
+            <p>Яскравість екрана</p>
+            <input type="range" id="brightness-slider" min="0" max="200" value="100" oninput="adjustBrightness(this.value)">
+        </div>
+        <div class="widgets">
+            <p>Віджети</p>
+            <img src="clockIcon.png" alt="Годинник віджет">
+            <img src="calendarIcon.png" alt="Календар віджет">
+            <p>*віджети є незмінними</p>
+        </div>
+    </div>
+   
     <div id="pc" class="app-window">
         <div class="app-header" onmousedown="startDrag(event, 'pc')">
             <div class="header-buttons">
@@ -49,7 +62,7 @@
                     Програми
                 </button>
                 <button class="menu-button">
-                    <img src="settingsIcon.png" alt="Налаштування">
+                    <img src="settingsIcon.png" alt="Налаштування" onclick="openApp('settings')">
                     Налаштування
                 </button>
                 <button class="menu-button" onclick="openApp('about')">
@@ -134,16 +147,18 @@
                     <p>Перейти до</p>
                     <input type="text" id="current-path" value="C:/" readonly>
                 </div>
+                <button onclick="goBack()">Назад</button>
             </div>
             <div class="file-list">
                 <h1>Вітаємо у файлах!</h1>
-                <h2>Останні використані файли:</h2>
+                <h2>Оберіть категорію для продовження</h2>
             </div>
             <div class="categories">
                 <h2>Доступні категорії:</h2>
-                <button onclick="openFolder('C:/')">C:</button>
                 <button onclick="openFolder('System')">Системні</button>
+                <button onclick="openFolder('Programs')">Програми</button>
                 <button onclick="openFolder('Desktop')">Робочий стіл</button>
+                <button onclick="openFolder('Downloads')">Завантаження</button>
             </div>
         </div>
     </div>
@@ -159,12 +174,36 @@
             <h2>Від RoMan Devs Inc. 2024-2024. Усі права захищені.</h2>
             <h3>Характеристики RoMan PC Emulator:</h3>
             <ul>
-                <li>GPU: GeForce RTX 4060</li>
+                <li>GPU: Nvidia GeForce RTX 4060</li>
                 <li>CPU: Intel Core i5-12400F</li>
                 <li>RAM: 16GB Kingston Fury RGB 3200Mhz DDR4 2x</li>
                 <li>ROM: Samsung 970 EVO Plus SSD 128GB</li>
                 <li>ROM2: Seagate BarraCuda HDD 4TB</li>
             </ul>
+        </div>
+    </div>
+    <div id="notes" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'notes')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('notes')">☐</span>
+                <span class="close" onclick="closeApp('notes')">x</span>
+            </div>
+            <span class="app-title">Notes</span>
+        </div>
+        <div class="app-content">
+            <textarea id="notes-input" placeholder="Введіть ваші нотатки тут..."></textarea>
+        </div>
+    </div>
+    <div id="settings" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'settings')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('settings')">☐</span>
+                <span class="close" onclick="closeApp('settings')">x</span>
+            </div>
+            <span class="app-title">Settings</span>
+        </div>
+        <div class="app-content">
+            
         </div>
     </div>
     <div id="all-programs" class="app-window">
@@ -177,7 +216,7 @@
         </div>
         <div class="app-content">
             <h1>Усі встановлені програми:</h1>
-            <p>Примітка: програмами RoMan OS рахує лише з розширенням .roa, або .rosa та в папці програмия</p>
+            <p>Примітка: програмами RoMan OS рахує лише з розширенням .roa, або .rosa та в папці програми</p>
             <div class="apps">
                 <button class="menu-button" onclick="openApp('settings')">
                     <img src="settingsIcon.png" alt="Налаштування">
@@ -204,7 +243,7 @@
                     Новини
                 </button>
                 <button onclick="openApp('notes')" class="menu-button">
-                    <img src="" alt="Нотатки">
+                    <img src="notes.png" alt="Нотатки">
                     Нотатки
                 </button>
             </div>

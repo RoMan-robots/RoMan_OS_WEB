@@ -2,6 +2,16 @@ let currentFullScreenApp = null;
 let isDragging = false;
 let dragOffsetX, dragOffsetY;
 let zIndexCounter = 1;
+let displayHome = false;
+
+let systemFiles = ['reinstaller.rosa', 'oskiller.rosa'];
+let systemProcessFiles = ['desktop.sp', "users.sp", "wifi.sp", "passwords.sp"];
+let languageFiles = ["UA.lp", "EN.lp"]
+let programFiles = [ "Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa", "Caluculator.rosa", "www.rosa", "News.rosa", "Settings.rosa", "Notes.rosa", "VSCode(import).roa", "allPrograms.rosa" ]
+let bootFiles = ["initialize.efi", "baseSettings.json", "configuration.efi"]
+let drivers = ["sound.rod", "display.rod", "wifi.rod", "date.rod"]
+let desktopFiles = []
+let systemFolders = ["System processes", "Programs", "Boot", "Drivers", "LanguagePacks"];
 
 function closeApp(appId) {
     document.getElementById(appId).style.display = 'none';
@@ -19,6 +29,18 @@ function openApp(appId) {
     if (currentFullScreenApp) {
         appWindow.classList.add('full-screen');
         document.body.classList.add('full-screen');
+    }
+    if(appId == "notes"){
+        const notesInput = document.getElementById('notes-input');
+
+        const savedNotes = localStorage.getItem('notes');
+        if (savedNotes) {
+            notesInput.value = savedNotes;
+        }
+
+        notesInput.addEventListener('input', () => {
+            localStorage.setItem('notes', notesInput.value);
+        });
     }
 }
 
@@ -169,24 +191,108 @@ if (savedTimezone) {
 function openFolder(path) {
     const fileList = document.querySelector('.file-list');
     fileList.innerHTML = '';
+    let currentPath;
 
     if (path === 'System') {
-        const systemFiles = ['reinstaller.rosa', 'desktop.sp', 'file3.sys'];
+        currentPath = 'System';
         systemFiles.forEach(file => {
             const fileElement = document.createElement('div');
             fileElement.textContent = `📄 ${file}`;
             fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
+            fileElement.onclick = () => { 
+                openFile(); 
+            }
         });
-    } else if (path === 'Desktop') {
-        const desktopFiles = [];
+
+        systemFolders.forEach(folder => {
+            const folderElement = document.createElement('div');
+            folderElement.textContent = `🗂️ ${folder}`;
+            folderElement.style.cursor = 'pointer';
+            folderElement.onclick = () => { 
+                openFolder(folder); 
+            };
+            fileList.appendChild(folderElement); 
+        });
+    } else if (path === 'System processes') {
+        currentPath = 'System/System processes';
+        systemProcessFiles.forEach(file => {
+            const fileElement = document.createElement('div');
+            fileElement.textContent = `📄 ${file}`;
+            fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
+        });
+    } else if (path === 'Programs') {
+        currentPath = 'System/Programs';
+        programFiles.forEach(file => {
+            const fileElement = document.createElement('div');
+            fileElement.textContent = `📄 ${file}`;
+            fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
+        });
+    } else if (path === 'Boot') {
+        currentPath = 'System/Boot';
+        bootFiles.forEach(file => {
+            const fileElement = document.createElement('div');
+            fileElement.textContent = `📄 ${file}`;
+            fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
+        });
+    } else if (path === 'Drivers') {
+        currentPath = 'System/Drivers';
+        drivers.forEach(file => {
+            const fileElement = document.createElement('div');
+            fileElement.textContent = `📄 ${file}`;
+            fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
+        });
+    } else if (path === 'LanguagePacks') {
+        currentPath = 'System/LanguagePacks';
+        languageFiles.forEach(file => {
+            const fileElement = document.createElement('div');
+            fileElement.textContent = `📄 ${file}`;
+            fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
+        });
+    }  else if (path === 'Desktop') {
+        currentPath = 'System/System processes/dekstop.sp/Folder';
         desktopFiles.forEach(file => {
             const fileElement = document.createElement('div');
             fileElement.textContent = `📄 ${file}`;
             fileList.appendChild(fileElement);
+            fileElement.style.cursor = 'pointer';
         });
     }
+    document.getElementById('current-path').value = `C:/${currentPath}`;
+}
 
-    document.getElementById('current-path').value = path;
+function goBack() {
+    let currentPath = document.getElementById('current-path').value;
+    let pathArray = currentPath.split('/');
+    
+    pathArray.pop();
+
+    openFolder(pathArray[pathArray.length-1]);
+}
+
+function toggleHome(){
+    if(displayHome){
+        document.querySelector(".home").style.display = "none";
+    } else {
+        document.querySelector(".home").style.display = "flex";
+    }
+    displayHome = !displayHome
+}
+
+function adjustVolume(value) {
+    let audioElements = document.querySelectorAll('audio, video');
+    audioElements.forEach((element) => {
+        element.volume = value / 100;
+    });
+}
+
+function adjustBrightness(value) {
+    document.querySelector('.desktop').style.filter = `brightness(${value / 100})`;
 }
 
 window.closeApp = closeApp;

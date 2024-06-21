@@ -86,5 +86,6 @@ document.getElementById("continue3").addEventListener("click", function() {
 });
 
 function reboot(){
-    window.location.href = '/?reason=oobe';
+    localStorage.setItem("reason", "oobe")
+    window.location.href = '/';
 }

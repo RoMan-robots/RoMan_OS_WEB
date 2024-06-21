@@ -47,5 +47,6 @@ function fatalReboot() {
 }
 
 function reboot() {
-    window.location.href = "/?reason=reboot";
+    localStorage.setItem("reason", "reboot")
+    window.location.href = "/";
 }
