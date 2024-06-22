@@ -295,6 +295,10 @@ function adjustBrightness(value) {
     document.querySelector('.desktop').style.filter = `brightness(${value / 100})`;
 }
 
+function reboot() {
+    window.location.href = '/'
+}
+
 window.closeApp = closeApp;
 window.openApp = openApp;
 window.toggleFullScreen = toggleFullScreen;
