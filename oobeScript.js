@@ -29,6 +29,9 @@ function nextStep(step) {
             return;
         }
         localStorage.setItem('adminName', username);
+        if(document.getElementById('password').value) {
+            localStorage.setItem('password', document.getElementById('password').value)
+        }
         setInterval(() => {
             nextStep(step + 1);
         }, 3500);
