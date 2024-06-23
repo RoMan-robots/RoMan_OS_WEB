@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
     <script src="desktopScript.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
@@ -130,6 +131,20 @@
         </div>
         <div class="app-content">
             <h1>Новини станом на <span id="current-date-time"></span></h1>
+            <h2>RoMan OS вийшла!</h2>
+            <p>Догадки про секрет проект збіглися, це ос на базі веб сайту. Є невеличкий функціонал, в цілому виглядає добре.</p>
+            <h2>Готується новий секретний проект.</h2>
+            <p>Крім RoMan Talk 2.0 з'явились чутки, що паралельно розробляється інший проект.
+               Про нього поки немає жодної інформації, догадок теж. Лише що він розробляється. 
+            </p>
+            <h2>Що буде в RoMan Talk 2.0?</h2>
+            <p>Очікується, що після версії 1.2 буде глобальний апдейт.
+               Судячи з скріншотів, ненавмисних зливів власника, можливий редизайн веб сайту і корисні фішки месенжера, такі як відео дзвінки і так далі.
+            </p>
+            <h2>RoMan Talk 1.2 вийшов!</h2>
+            <p>В цьому оновлені месенжера можна обрати 10 тем, ранги, можливість блокувати акаунти, та багато чого іншого!
+                Скоро вийде патч, де покажуть баг фікси та міні фішки.
+            </p>
         </div>
     </div>
     <div id="files" class="app-window">
@@ -202,7 +217,13 @@
             <span class="app-title">Settings</span>
         </div>
         <div class="app-content">
-            
+            <h1>Налаштування</h1>
+            <h2>Оберіть категорію</h2>
+            <button>Wi-Fi</button>
+            <button>Акаунт та пароль</button>
+            <button>Dock</button>
+            <button>Дата і час</button>
+            <button onclick="deleteSystem()">Видалення системи</button>
         </div>
     </div>
     <div id="all-programs" class="app-window">

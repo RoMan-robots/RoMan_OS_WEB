@@ -7,7 +7,7 @@ let displayHome = false;
 let systemFiles = ['reinstaller.rosa', 'oskiller.rosa'];
 let systemProcessFiles = ['desktop.sp', "users.sp", "wifi.sp", "passwords.sp"];
 let languageFiles = ["UA.lp", "EN.lp"]
-let programFiles = [ "Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa", "Caluculator.rosa", "www.rosa", "News.rosa", "Settings.rosa", "Notes.rosa", "VSCode(import).roa", "allPrograms.rosa" ]
+let programFiles = ["Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa", "Caluculator.rosa", "www.rosa", "News.rosa", "Settings.rosa", "Notes.rosa", "VSCode(import).roa", "allPrograms.rosa"]
 let bootFiles = ["initialize.efi", "baseSettings.json", "configuration.efi"]
 let drivers = ["sound.rod", "display.rod", "wifi.rod", "date.rod"]
 let desktopFiles = []
@@ -30,7 +30,7 @@ function openApp(appId) {
         appWindow.classList.add('full-screen');
         document.body.classList.add('full-screen');
     }
-    if(appId == "notes"){
+    if (appId == "notes") {
         const notesInput = document.getElementById('notes-input');
 
         const savedNotes = localStorage.getItem('notes');
@@ -200,8 +200,8 @@ function openFolder(path) {
             fileElement.textContent = `📄 ${file}`;
             fileList.appendChild(fileElement);
             fileElement.style.cursor = 'pointer';
-            fileElement.onclick = () => { 
-                openFile(); 
+            fileElement.onclick = () => {
+                openFile();
             }
         });
 
@@ -209,10 +209,10 @@ function openFolder(path) {
             const folderElement = document.createElement('div');
             folderElement.textContent = `🗂️ ${folder}`;
             folderElement.style.cursor = 'pointer';
-            folderElement.onclick = () => { 
-                openFolder(folder); 
+            folderElement.onclick = () => {
+                openFolder(folder);
             };
-            fileList.appendChild(folderElement); 
+            fileList.appendChild(folderElement);
         });
     } else if (path === 'System processes') {
         currentPath = 'System/System processes';
@@ -254,7 +254,7 @@ function openFolder(path) {
             fileList.appendChild(fileElement);
             fileElement.style.cursor = 'pointer';
         });
-    }  else if (path === 'Desktop') {
+    } else if (path === 'Desktop') {
         currentPath = 'System/System processes/dekstop.sp/Folder';
         desktopFiles.forEach(file => {
             const fileElement = document.createElement('div');
@@ -269,14 +269,14 @@ function openFolder(path) {
 function goBack() {
     let currentPath = document.getElementById('current-path').value;
     let pathArray = currentPath.split('/');
-    
+
     pathArray.pop();
 
-    openFolder(pathArray[pathArray.length-1]);
+    openFolder(pathArray[pathArray.length - 1]);
 }
 
-function toggleHome(){
-    if(displayHome){
+function toggleHome() {
+    if (displayHome) {
         document.querySelector(".home").style.display = "none";
     } else {
         document.querySelector(".home").style.display = "flex";
@@ -291,8 +291,17 @@ function adjustVolume(value) {
     });
 }
 
-function adjustBrightness(value) {
-    document.querySelector('.desktop').style.filter = `brightness(${value / 100})`;
+function deleteSystem() {
+    confirm("Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних в межі цього додатку і вам прийдеться перевстановити систему у разі повторного використання!")
+
+
+    const keysToRemove = ['password', 'reason', 'notes', "adminName", "timezone"];
+
+    keysToRemove.forEach(key => {
+        localStorage.removeItem(key);
+    });
+
+    window.location.href = "/"
 }
 
 function reboot() {

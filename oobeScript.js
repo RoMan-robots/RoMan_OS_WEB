@@ -16,7 +16,7 @@ function nextStep(step) {
             document.querySelector(`.wi-fi-error-screen`).style.display = "block";
             return;
         } else if (WiFiChoise == "wi-fi-free") {
-
+            localStorage.setItem("wifi", "connected")
         } else {
             alert("WiFi Error: Ваш комп'ютер не підтримує серверні мережи. Будь ласка, підключіться до іншого WiFi");
             return;
