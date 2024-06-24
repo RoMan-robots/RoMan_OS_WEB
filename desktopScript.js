@@ -7,7 +7,9 @@ let displayHome = false;
 let systemFiles = ['reinstaller.rosa', 'oskiller.rosa'];
 let systemProcessFiles = ['desktop.sp', "users.sp", "wifi.sp", "passwords.sp"];
 let languageFiles = ["UA.lp", "EN.lp"]
-let programFiles = ["Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa", "Caluculator.rosa", "www.rosa", "News.rosa", "Settings.rosa", "Notes.rosa", "VSCode(import).roa", "allPrograms.rosa"]
+let programFiles = ["Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa", 
+                    "Caluculator.rosa", "www.rosa", "News.rosa", "Notes.rosa", 
+                    "VSCode(import).roa", "allPrograms.rosa"]
 let bootFiles = ["initialize.efi", "baseSettings.json", "configuration.efi"]
 let drivers = ["sound.rod", "display.rod", "wifi.rod", "date.rod"]
 let desktopFiles = []
