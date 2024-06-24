@@ -52,8 +52,8 @@ async function hashSHA256(message){
 }
 
 async function skipWiFi() {
-    document.getElementById("wi-fi-select").value = "wi-fi-free";
-    await nextStep(2);
+    document.querySelector(`.oobe2`).style.display = "none";
+    document.querySelector(`.oobe3`).style.display = "block";
 }
 
 function fatalReboot() {
