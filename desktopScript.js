@@ -292,16 +292,18 @@ function adjustVolume(value) {
 }
 
 function deleteSystem() {
-    confirm("Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних в межі цього додатку і вам прийдеться перевстановити систему у разі повторного використання!")
+    if(!confirm("Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних в межі цього додатку і вам прийдеться перевстановити систему у разі повторного використання!")){
+        return;
+    }
 
 
-    const keysToRemove = ['password', 'reason', 'notes', "adminName", "timezone"];
+    const keysToRemove = ['password', 'reason', 'notes', "adminName", "timezone", "wifi"];
 
     keysToRemove.forEach(key => {
         localStorage.removeItem(key);
     });
 
-    window.location.href = "/"
+    reboot()
 }
 
 function reboot() {
