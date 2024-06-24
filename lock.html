@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-    <script src="lockScript.js"></script>
+    <script src="lockScript.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
     </style>
@@ -18,7 +18,7 @@
         <h1>Вітаю в RoMan OS!</h1>
         <h2>Введіть пароль для продовження:</h2>
         <input type="password" placeholder="Пароль" class="password">
-        <button onclick="unlock()">Продовжити</button>
+        <button id="unlock">Продовжити</button>
     </div>
 </body> 
 
