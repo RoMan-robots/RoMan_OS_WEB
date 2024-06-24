@@ -1,7 +1,7 @@
 const oobeMusic = new Audio('./oobeMusic.mp3');
 oobeMusic.play();
 
-function nextStep(step) {
+async function nextStep(step) {
     if (step == 1) {
         const timezoneSelect = document.getElementById('utc-select');
         const selectedTimezone = timezoneSelect.value;
@@ -24,25 +24,36 @@ function nextStep(step) {
     } else if (step >= 3 && step < 7) {
         const allName = document.getElementById('all-name').value;
         const username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
         if (!allName || !username) {
             alert("Будь ласка, заповніть повне ім'я та ім'я адміністратора");
             return;
         }
         localStorage.setItem('adminName', username);
-        if(document.getElementById('password').value) {
-            localStorage.setItem('password', document.getElementById('password').value)
+       
+        if (password) {
+            await hashSHA256(password)
         }
-        setInterval(() => {
-            nextStep(step + 1);
+
+        setInterval(async () => {
+            await nextStep(step + 1);
         }, 3500);
     }
     document.querySelector(`.oobe${step}`).style.display = "none";
     document.querySelector(`.oobe${step + 1}`).style.display = "block";
 }
 
-function skipWiFi() {
+async function hashSHA256(message){
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    localStorage.setItem("password", hashArray.map(b => b.toString(16).padStart(2, '0')).join(''))
+}
+
+async function skipWiFi() {
     document.getElementById("wi-fi-select").value = "wi-fi-free";
-    nextStep(2);
+    await nextStep(2);
 }
 
 function fatalReboot() {

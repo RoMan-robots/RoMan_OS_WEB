@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="oobeScript.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
@@ -15,7 +16,7 @@
 <body class="oobe">
     <div class="oobe-div">
         <div class="oobe1">
-            <h1>Вітаємо в новій RoMan OS 1.0 beta!</h1>
+            <h1>Вітаємо в RoMan OS 1.0 beta!</h1>
             <h2>Потрібно налаштувати систему, щоб користуватися нею.</h2>
             <h3>Для початку оберіть часовий пояс:</h3>
             <select name="UTC Select" id="utc-select">
@@ -111,6 +112,7 @@
         <h2>Перезавантажте комп'ютер та перевстановіть систему заново для продовження</h2>
         <button onclick="fatalReboot()">Перезавантажити</button>
     </div>
+
 </body>
 
 </html>
