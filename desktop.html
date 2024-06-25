@@ -39,7 +39,7 @@
             <p>*віджети є незмінними</p>
         </div>
     </div>
-   
+
     <div id="pc" class="app-window">
         <div class="app-header" onmousedown="startDrag(event, 'pc')">
             <div class="header-buttons">
@@ -131,17 +131,21 @@
         <div class="app-content">
             <h1>Новини станом на <span id="current-date-time"></span></h1>
             <h2>RoMan OS вийшла!</h2>
-            <p>Догадки про секрет проект збіглися, це ос на базі веб сайту. Є невеличкий функціонал, в цілому виглядає добре.</p>
+            <p>Догадки про секрет проект збіглися, це операційна система на базі веб сайту. Є невеличкий функціонал, в
+                цілому виглядає
+                добре.</p>
             <h2>Готується новий секретний проект.</h2>
             <p>Крім RoMan Talk 2.0 з'явились чутки, що паралельно розробляється інший проект.
-               Про нього поки немає жодної інформації, догадок теж. Лише що він розробляється. 
+                Про нього поки немає жодної інформації, догадок теж. Лише що він розробляється.
             </p>
             <h2>Що буде в RoMan Talk 2.0?</h2>
             <p>Очікується, що після версії 1.2 буде глобальний апдейт.
-               Судячи з скріншотів, ненавмисних зливів власника, можливий редизайн веб сайту і корисні фішки месенжера, такі як відео дзвінки і так далі.
+                Судячи з скріншотів, ненавмисних зливів власника, можливий редизайн веб сайту і корисні фішки месенжера,
+                такі як відео дзвінки і так далі.
             </p>
             <h2>RoMan Talk 1.2 вийшов!</h2>
-            <p>В цьому оновлені месенжера можна обрати 10 тем, ранги, можливість блокувати акаунти, та багато чого іншого!
+            <p>В цьому оновлені месенжера можна обрати 10 тем, ранги, можливість блокувати акаунти, та багато чого
+                іншого!
                 Скоро вийде патч, де покажуть баг фікси та міні фішки.
             </p>
         </div>
@@ -217,12 +221,35 @@
         </div>
         <div class="app-content">
             <h1>Налаштування</h1>
-            <h2>Оберіть категорію</h2>
-            <button>Wi-Fi</button>
-            <button>Акаунт та пароль</button>
-            <button>Dock</button>
-            <button>Дата і час</button>
-            <button onclick="deleteSystem()">Видалення системи</button>
+            <div class="actions">
+                <h2>Оберіть категорію</h2>
+                <button>Wi-Fi</button>
+                <button>Акаунт та пароль</button>
+                <button>Dock</button>
+                <button>Дата і час</button>
+                <button onclick="deleteSystem()">Видалення системи</button>
+            </div>
+            <div class="wifi">
+                <h2>Підключення: <span class="wifi-connection"></span></h2>
+                <p>Обрати іншу мережу:</p>
+                <select name="Wi-Fi Select" id="wi-fi-select">
+                    <option value="wi-fi-premium">Wi-Fi Premium</option>
+                    <option value="wi-fi-virus">Wi-Fi Free No viruses no scam</option>
+                    <option value="wi-fi-free">Wi-Fi Really Free</option>
+                    <option value="wi-fi-server">Wi-Fi Server Professional</option>
+                </select>
+                <button onclick="closeApp('settings')">Підключитися пізніше</button>
+                <button onclick="selectWiFi()">Обрати</button>
+            </div>
+            <div class="account&password">
+                <div class="account"></div>
+                <div class="password"></div>
+                <h2>Акаунт та пароль</h2>
+                <p>Теперішнє ім'я адміністратора:</p>
+                <input type="text">
+                <button>Змінити пароль</button>
+                <button>Змінити ім'я адміністратора</button>
+            </div>
         </div>
     </div>
     <div id="all-programs" class="app-window">
