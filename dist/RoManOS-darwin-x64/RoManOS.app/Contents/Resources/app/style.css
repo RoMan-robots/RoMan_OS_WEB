@@ -1,0 +1,396 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: "Poetsen One", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.boot-elements {
+    margin-top: 10%;
+}
+
+.uefi-elements {
+    margin-top: 20%;
+}
+
+.error-screen {
+    display: none;
+    margin-top: 20%;
+    color: red;
+}
+
+.installer {
+    background-image: url("/bg.png");
+    margin-top: 12%;
+}
+
+.installer-div {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 500px;
+}
+
+.installer-div2,
+.installer-div3,
+.installing-os,
+.reload {
+    display: none;
+}
+
+.oobe {
+    background-image: url("/bg.png");
+    margin-top: 12%;
+}
+
+.oobe-div {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 600px;
+}
+
+.oobe2,
+.oobe3,
+.wi-fi-error-screen,
+.oobe4,
+.oobe5,
+.oobe6,
+.oobe7,
+.oobe8 {
+    display: none;
+}
+
+.lock {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30vh;
+    width: 500px;
+    height: 200px;
+}
+
+.desktop {
+    background-image: url("/bg.png");
+}
+
+.dock {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 600px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    resize: both;
+    overflow: auto;
+    user-select: none;
+}
+.control {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    margin-top: 15px;
+    height: 37px;
+    width: 37px;
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
+}
+.date-time {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+}
+
+.info {
+    display: flex;
+    margin-left: 91%;
+    flex-direction: row-reverse;
+    height: 70px;
+    z-index: 1000;
+}
+
+.full-screen .info {
+    position: absolute;
+    top: 0.04px;
+    right: 3px;
+    margin-left: 0;
+    align-items: flex-start;
+}
+
+.home {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: none;
+    margin-left: 85%;
+    margin-bottom: 0%;
+    flex-direction: column;
+    height: 87vh;
+    z-index: 1000;
+    position: absolute;
+    top: 60px;
+}
+.control-panel {
+    flex-direction: column;
+}
+
+.widgets img {
+    width: 67%;
+}
+
+.full-screen .dock {
+    opacity: 0.07;
+}
+
+.full-screen .dock:hover {
+    opacity: 1;
+}
+
+.touch .dock {
+    opacity: 0.07;
+}
+
+.touch .dock:hover {
+    opacity: 1;
+}
+
+.app-window {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 770px;
+    height: 550px;
+    position: absolute;
+    top: 150px;
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    resize: both;
+    overflow: auto;
+    z-index: 1;
+}
+
+.app-header {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px
+}
+
+.expand,
+.close {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20px;
+}
+
+.app-title {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.app-content {
+    padding: 20px;
+    flex-grow: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button {
+    background: rgba(0, 0, 0, 0.135);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.menu-button img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+}
+
+.menu-button:hover {
+    background: rgba(110, 110, 110, 0.43);
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+}
+
+.display {
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: right;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.categories {
+    text-align: center;
+    display: flex;
+    align-items: end;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.control-panel button {
+    margin-right: 5px;
+}
+
+.control-panel input {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.sort {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#current-path {
+    width: 400px;
+}
+
+.apps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.buttons button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#notes .app-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+#notes-input {
+    width: 100%;
+    height: 90%;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    background-color: black;
+    color: white;
+}
+
+.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+}

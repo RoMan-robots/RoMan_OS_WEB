@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="uefiScript.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+    </style>
+   <link rel="stylesheet" href="style.css">
+   <title>UEFI Pro</title>
+</head>
+
+<body>
+    <div class="uefi-elements">
+        <h1>UEFI Pro Boot Menu</h1>
+        <h3>Виберіть стартовий девайс</h3>
+        <select name="Select boot device" class="select-boot">
+            <option value="ssd">Samsung 970 EVO Plus SSD 128GB</option>
+            <option value="hdd">Seagate BarraCuda HDD 4TB</option>
+            <option value="usb">Verbatium Executive USB 16GB</option>
+        </select>
+        <button class="btn btn-success uefi-button" onclick="runFromUEFI()">Обрати</button>
+    </div>
+    <div class="error-screen">
+        <h1>Boot Error: дані обраного диска відсутні або пошкоджені</h1>
+        <button onclick="reboot()">Перезавантажити</button>
+    </div>
+</body>
+
+</html>
