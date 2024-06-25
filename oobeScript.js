@@ -14,6 +14,14 @@ async function nextStep(step) {
         } else if (WiFiChoise == "wi-fi-virus") {
             document.querySelector(`.oobe${step}`).style.display = "none";
             document.querySelector(`.wi-fi-error-screen`).style.display = "block";
+            
+            const keysToRemove = ['password', 'reason', 'notes', "adminName", "timezone", "wifi"];
+
+            keysToRemove.forEach(key => {
+                localStorage.removeItem(key);
+            });
+
+            fatalReboot()
             return;
         } else if (WiFiChoise == "wi-fi-free") {
             localStorage.setItem("wifi", "connected")
@@ -31,7 +39,7 @@ async function nextStep(step) {
             return;
         }
         localStorage.setItem('adminName', username);
-       
+
         if (password) {
             await hashSHA256(password)
         }
@@ -44,7 +52,7 @@ async function nextStep(step) {
     document.querySelector(`.oobe${step + 1}`).style.display = "block";
 }
 
-async function hashSHA256(message){
+async function hashSHA256(message) {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));

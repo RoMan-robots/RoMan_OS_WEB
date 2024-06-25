@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="desktopScript.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
@@ -239,6 +240,7 @@
                     <option value="wi-fi-server">Wi-Fi Server Professional</option>
                 </select>
                 <button onclick="closeApp('settings')">Підключитися пізніше</button>
+                <button onclick="disconnect()">Відключитися від мережі</button>
                 <button onclick="selectWiFi()">Обрати</button>
             </div>
             <div class="account&password">

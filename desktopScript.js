@@ -7,9 +7,9 @@ let displayHome = false;
 let systemFiles = ['reinstaller.rosa', 'oskiller.rosa'];
 let systemProcessFiles = ['desktop.sp', "users.sp", "wifi.sp", "passwords.sp"];
 let languageFiles = ["UA.lp", "EN.lp"]
-let programFiles = ["Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa", 
-                    "Caluculator.rosa", "www.rosa", "News.rosa", "Notes.rosa", 
-                    "VSCode(import).roa", "allPrograms.rosa"]
+let programFiles = ["Dock.rosa", "PCMenu.rosa", "Settings.rosa", "Files.rosa",
+    "Caluculator.rosa", "www.rosa", "News.rosa", "Notes.rosa",
+    "VSCode(import).roa", "allPrograms.rosa"]
 let bootFiles = ["initialize.efi", "baseSettings.json", "configuration.efi"]
 let drivers = ["sound.rod", "display.rod", "wifi.rod", "date.rod"]
 let desktopFiles = []
@@ -293,8 +293,36 @@ function adjustVolume(value) {
     });
 }
 
+async function selectWiFi() {
+    let WiFiChoise = document.getElementById("wi-fi-select").value;
+    if (WiFiChoise == "wi-fi-premium") {
+        alert("WiFi Error: ця мережа не може бути застосована на вашому комп'ютері, відсутній Premium Chip X. Будь ласка, підключіться до іншої мережі");
+        return;
+    } else if (WiFiChoise == "wi-fi-virus") {
+        document.body.style.display = "none"
+        document.querySelector(`.wi-fi-error-screen`).style.display = "block";
+        const keysToRemove = ['password', 'reason', 'notes', "adminName", "timezone", "wifi"];
+
+        keysToRemove.forEach(key => {
+            localStorage.removeItem(key);
+        });
+
+        reboot()
+        return;
+    } else if (WiFiChoise == "wi-fi-free") {
+        localStorage.setItem("wifi", "connected")
+    } else {
+        alert("WiFi Error: Ваш комп'ютер не підтримує серверні мережи. Будь ласка, підключіться до іншого WiFi");
+        return;
+    }
+}
+
+function disconnect() {
+    localStorage.removeItem("wifi")
+}
+
 function deleteSystem() {
-    if(!confirm("Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних в межі цього додатку і вам прийдеться перевстановити систему у разі повторного використання!")){
+    if (!confirm("Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних в межі цього додатку і вам прийдеться перевстановити систему у разі повторного використання!")) {
         return;
     }
 
