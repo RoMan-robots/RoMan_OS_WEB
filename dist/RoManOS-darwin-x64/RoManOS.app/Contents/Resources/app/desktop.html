@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="desktopScript.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>RoMan OS</title>
+</head>
+
+<body class="desktop">
+    <div class="dock">
+        <img src="pcIcon.png" alt="" width="100px" onclick="openApp('pc')">
+        <img src="calcIcon.png" alt="" width="100px" onclick="openApp('calc')">
+        <img src="wwwIcon.png" alt="" width="100px" onclick="openApp('www')">
+        <img src="newsIcon.png" alt="" width="100px" onclick="openApp('news')">
+    </div>
+    <div class="info">
+        <div class="control">
+            <div onclick="toggleHome()">🎚️</div>
+        </div>
+        <p id="time-date">17:00 <br> 11.06.2024</p>
+    </div>
+    <div class="home">
+        <div class="control-panel">
+            <h2>Центр керування</h2>
+            <p>Звук</p>
+            <input type="range" id="volume-slider" min="0" max="100" value="50" oninput="adjustVolume(this.value)">
+            <button onclick="reboot()">Перезавантажити</button>
+        </div>
+        <div class="widgets">
+            <p>Віджети</p>
+            <img src="clockIcon.png" alt="Годинник віджет">
+            <img src="calendarIcon.png" alt="Календар віджет">
+            <p>*віджети є незмінними</p>
+        </div>
+    </div>
+
+    <div id="pc" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'pc')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('pc')">☐</span>
+                <span class="close" onclick="closeApp('pc')">x</span>
+            </div>
+            <span class="app-title">PC Menu</span>
+        </div>
+        <div class="app-content">
+            <h1>Вітаю в RoMan OS, <span class="admin-name"></span>!</h1>
+            <h2>Оберіть категорію, щоб продовжити</h2>
+            <div class="menu-buttons">
+                <button class="menu-button" onclick="openApp('files')">
+                    <img src="folderIcon.png" alt="Файли">
+                    Файли
+                </button>
+                <button class="menu-button" onclick="openApp('all-programs')">
+                    <img src="appsIcon.png" alt="Програми">
+                    Програми
+                </button>
+                <button class="menu-button">
+                    <img src="settingsIcon.png" alt="Налаштування" onclick="openApp('settings')">
+                    Налаштування
+                </button>
+                <button class="menu-button" onclick="openApp('about')">
+                    <img src="aboutIcon.png" alt="Про комп'ютер">
+                    Про комп'ютер
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="calc" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'calc')">
+            <div class="header-buttons">
+                <span class="close" onclick="closeApp('calc')">x</span>
+            </div>
+            <span class="app-title">Calculator</span>
+        </div>
+        <div class="app-content">
+            <div class="calculator">
+                <div class="display" id="calc-display">0</div>
+                <div class="buttons">
+                    <button onclick="clearDisplay()">C</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('.')">.</button>
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="calculateResult()">=</button>
+                    <button onclick="appendToDisplay('0')">0</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="www" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'www')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('www')">☐</span>
+                <span class="close" onclick="closeApp('www')">x</span>
+            </div>
+            <span class="app-title">WWW Browser</span>
+        </div>
+        <div class="app-content">
+            <h1>WWW Browser</h1>
+            <h2>Швидкий, надійний, вбудований</h2>
+            <h3>Введіть сайт, до якого хочете перейти</h3>
+            <input type="text" id="browser-url" placeholder="Enter URL" />
+            <button id="go" onclick="loadURL()">Почати</button>
+            <iframe id="browser-frame" src="" style="width:100%; height:80vh;"></iframe>
+        </div>
+    </div>
+    <div id="news" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'news')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('news')">☐</span>
+                <span class="close" onclick="closeApp('news')">x</span>
+            </div>
+            <span class="app-title">News</span>
+        </div>
+        <div class="app-content">
+            <h1>Новини станом на <span id="date"></span></h1>
+            <h2>RoMan OS вийшла!</h2>
+            <p>Догадки про секрет проект збіглися, це операційна система на базі веб сайту. Є невеличкий функціонал, в
+                цілому виглядає
+                добре.</p>
+            <h2>Готується новий секретний проект.</h2>
+            <p>Крім RoMan Talk 2.0 з'явились чутки, що паралельно розробляється інший проект.
+                Про нього поки немає жодної інформації, догадок теж. Лише що він розробляється.
+            </p>
+            <h2>Що буде в RoMan Talk 2.0?</h2>
+            <p>Очікується, що після версії 1.2 буде глобальний апдейт.
+                Судячи з скріншотів, ненавмисних зливів власника, можливий редизайн веб сайту і корисні фішки месенжера,
+                такі як відео дзвінки і так далі.
+            </p>
+            <h2>RoMan Talk 1.2 вийшов!</h2>
+            <p>В цьому оновлені месенжера можна обрати 10 тем, ранги, можливість блокувати акаунти, та багато чого
+                іншого!
+                Скоро вийде патч, де покажуть баг фікси та міні фішки.
+            </p>
+        </div>
+    </div>
+    <div id="files" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'files')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('files')">☐</span>
+                <span class="close" onclick="closeApp('files')">x</span>
+            </div>
+            <span class="app-title">Files</span>
+        </div>
+        <div class="app-content">
+            <div class="control-panel">
+                <div class="current-path">
+                    <p>Перейти до</p>
+                    <input type="text" id="current-path" value="C:/" readonly>
+                </div>
+                <button onclick="goBack()">Назад</button>
+            </div>
+            <div class="file-list">
+                <h1>Вітаємо у файлах!</h1>
+                <h2>Оберіть категорію для продовження</h2>
+            </div>
+            <div class="categories">
+                <h2>Доступні категорії:</h2>
+                <button onclick="openFolder('System')">Системні</button>
+                <button onclick="openFolder('Programs')">Програми</button>
+                <button onclick="openFolder('Desktop')">Робочий стіл</button>
+                <button onclick="openFolder('Downloads')">Завантаження</button>
+            </div>
+        </div>
+    </div>
+    <div id="about" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'about')">
+            <div class="header-buttons">
+                <span class="close" onclick="closeApp('about')">x</span>
+            </div>
+            <span class="app-title">About PC</span>
+        </div>
+        <div class="app-content">
+            <h1>RoMan OS 1.0 beta</h1>
+            <h2>Від RoMan Devs Inc. 2024-2024. Усі права захищені.</h2>
+            <h3>Характеристики RoMan PC Emulator:</h3>
+            <ul>
+                <li>GPU: Nvidia GeForce RTX 4060</li>
+                <li>CPU: Intel Core i5-12400F</li>
+                <li>RAM: 16GB Kingston Fury RGB 3200Mhz DDR4 2x</li>
+                <li>ROM: Samsung 970 EVO Plus SSD 128GB</li>
+                <li>ROM2: Seagate BarraCuda HDD 4TB</li>
+            </ul>
+        </div>
+    </div>
+    <div id="notes" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'notes')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('notes')">☐</span>
+                <span class="close" onclick="closeApp('notes')">x</span>
+            </div>
+            <span class="app-title">Notes</span>
+        </div>
+        <div class="app-content">
+            <textarea id="notes-input" placeholder="Введіть ваші нотатки тут..."></textarea>
+        </div>
+    </div>
+    <div id="settings" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'settings')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('settings')">☐</span>
+                <span class="close" onclick="closeApp('settings')">x</span>
+            </div>
+            <span class="app-title">Settings</span>
+        </div>
+        <div class="app-content">
+            <h1>Налаштування</h1>
+            <div class="actions">
+                <h2>Оберіть категорію</h2>
+                <button>Wi-Fi</button>
+                <button>Акаунт та пароль</button>
+                <button>Dock</button>
+                <button>Дата і час</button>
+                <button onclick="deleteSystem()">Видалення системи</button>
+            </div>
+            <div class="wifi">
+                <h2>Підключення: <span class="wifi-connection"></span></h2>
+                <p>Обрати іншу мережу:</p>
+                <select name="Wi-Fi Select" id="wi-fi-select">
+                    <option value="wi-fi-premium">Wi-Fi Premium</option>
+                    <option value="wi-fi-virus">Wi-Fi Free No viruses no scam</option>
+                    <option value="wi-fi-free">Wi-Fi Really Free</option>
+                    <option value="wi-fi-server">Wi-Fi Server Professional</option>
+                </select>
+                <button onclick="closeApp('settings')">Підключитися пізніше</button>
+                <button onclick="disconnect()">Відключитися від мережі</button>
+                <button onclick="selectWiFi()">Обрати</button>
+            </div>
+            <div class="account&password">
+                <div class="account"></div>
+                <div class="password"></div>
+                <h2>Акаунт та пароль</h2>
+                <p>Теперішнє ім'я адміністратора:</p>
+                <input type="text">
+                <button>Змінити пароль</button>
+                <button>Змінити ім'я адміністратора</button>
+            </div>
+        </div>
+    </div>
+    <div id="all-programs" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'all-programs')">
+            <div class="header-buttons">
+                <span class="expand" onclick="toggleFullScreen('all-programs')">☐</span>
+                <span class="close" onclick="closeApp('all-programs')">x</span>
+            </div>
+            <span class="app-title">All Programs</span>
+        </div>
+        <div class="app-content">
+            <h1>Усі встановлені програми:</h1>
+            <p>Примітка: програмами RoMan OS рахує лише з розширенням .roa, або .rosa та в папці програми</p>
+            <div class="apps">
+                <button class="menu-button" onclick="openApp('settings')">
+                    <img src="settingsIcon.png" alt="Налаштування">
+                    Налаштування
+                </button>
+                <button class="menu-button" onclick="openApp('files')">
+                    <img src="folderIcon.png" alt="Файли">
+                    Файли
+                </button>
+                <button class="menu-button" onclick="openApp('www')">
+                    <img src="wwwIcon.png" alt="WWW Браузер">
+                    WWW Браузер
+                </button>
+                <button class="menu-button" onclick="openApp('vscode')">
+                    <img src="vscodeIcon.png" alt="VSCode">
+                    Visual Studio Code
+                </button>
+                <button onclick="openApp('calc')" class="menu-button">
+                    <img src="calcIcon.png" alt="Калькулятор">
+                    Калькулятор
+                </button>
+                <button onclick="openApp('news')" class="menu-button">
+                    <img src="newsIcon.png" alt="Новини">
+                    Новини
+                </button>
+                <button onclick="openApp('notes')" class="menu-button">
+                    <img src="notes.png" alt="Нотатки">
+                    Нотатки
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 {
-  "name": "roman_os_web",
-  "version": "1.0.0",
-  "description": "",
+  "name": "RoManOS",
+  "version": "1.0 beta",
+  "description": "Пж не зливайте цю ос!!!!",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "electron-is-dev": "^3.0.1",
-    "electron-reload": "^2.0.0-alpha.1"
+    "electron-reload": "^2.0.0-alpha.1",
+    "puppeteer-core": "^22.12.1"
   }
 }

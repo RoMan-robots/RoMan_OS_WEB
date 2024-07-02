@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="oobeScript.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>RoMan OS OOBE</title>
+</head>
+
+<body class="oobe">
+    <div class="oobe-div">
+        <div class="oobe1">
+            <h1>Вітаємо в RoMan OS 1.0 beta!</h1>
+            <h2>Потрібно налаштувати систему, щоб користуватися нею.</h2>
+            <h3>Для початку оберіть часовий пояс:</h3>
+            <select name="UTC Select" id="utc-select">
+                <option value="UTC+14">UTC+14</option>
+                <option value="UTC+13:45">UTC+13:45</option>
+                <option value="UTC+13">UTC+13</option>
+                <option value="UTC+12:45">UTC+12:45</option>
+                <option value="UTC+12">UTC+12</option>
+                <option value="UTC+11:30">UTC+11:30</option>
+                <option value="UTC+11">UTC+11</option>
+                <option value="UTC+10:30">UTC+10:30</option>
+                <option value="UTC+10">UTC+10</option>
+                <option value="UTC+9:30">UTC+9:30</option>
+                <option value="UTC+9">UTC+9</option>
+                <option value="UTC+8">UTC+8</option>
+                <option value="UTC+7">UTC+7</option>
+                <option value="UTC+6:30">UTC+6:30</option>
+                <option value="UTC+6">UTC+6</option>
+                <option value="UTC+5:45">UTC+5:45</option>
+                <option value="UTC+5:30">UTC+5:30</option>
+                <option value="UTC+5">UTC+5</option>
+                <option value="UTC+4:30">UTC+4:30</option>
+                <option value="UTC+4">UTC+4</option>
+                <option value="UTC+3:30">UTC+3:30</option>
+                <option value="UTC+3">UTC+3</option>
+                <option value="UTC+2">UTC+2</option>
+                <option value="UTC+1">UTC+1</option>
+                <option value="UTC">UTC</option>
+                <option value="UTC-1">UTC-1</option>
+                <option value="UTC-2">UTC-2</option>
+                <option value="UTC-3">UTC-3</option>
+                <option value="UTC-3:30">UTC-3:30</option>
+                <option value="UTC-4">UTC-4</option>
+                <option value="UTC-4:30">UTC-4:30</option>
+                <option value="UTC-5">UTC-5</option>
+                <option value="UTC-6">UTC-6</option>
+                <option value="UTC-7">UTC-7</option>
+                <option value="UTC-8">UTC-8</option>
+                <option value="UTC-9">UTC-9</option>
+                <option value="UTC-9:30">UTC-9:30</option>
+                <option value="UTC-10">UTC-10</option>
+                <option value="UTC-11">UTC-11</option>
+                <option value="UTC-12">UTC-12</option>
+            </select>
+            <button onclick="nextStep(1)">Продовжити</button>
+            <p>P.S. Спочатку потрібно дізнатися, в який пояс входить ваша країна або регіон</p>
+        </div>
+        <div class="oobe2">
+            <h2>Підключення до інтернету</h2>
+            <h3>Доступні Wi-Fi:</h3>
+            <select name="Wi-Fi Select" id="wi-fi-select">
+                <option value="wi-fi-premium">Wi-Fi Premium</option>
+                <option value="wi-fi-virus">Wi-Fi Free No viruses no scam</option>
+                <option value="wi-fi-free">Wi-Fi Really Free</option>
+                <option value="wi-fi-server">Wi-Fi Server Professional</option>
+            </select>
+            <button onclick="skipWiFi()">Підключитися пізніше</button>
+            <button onclick="nextStep(2)">Обрати</button>
+        </div>
+        <div class="oobe3">
+            <h2>Час створити акаунт та дізнатися більше про Вас.</h2>
+            <label for="all-name">Повне ім'я:</label>
+            <input type="text" id="all-name" name="all-name" required><br><br>
+            <label for="username">Введіть ім'я адміністратора:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Введіть пароль:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <button onclick="nextStep(3)">Створити акаунт</button>
+        </div>
+        <div class="oobe4">
+            <h1>Дякуємо за вибір RoMan OS!</h1>
+        </div>
+        <div class="oobe5">
+            <h1>Зачекайте, будь ласка, виконується валідування інформації...
+            </h1>
+        </div>
+        <div class="oobe6">
+            <h1>Зачекайте, будь ласка, виконується налаштування RoMan OS...
+            </h1>
+        </div>
+        <div class="oobe7">
+            <h1>Завершення...</h1>
+        </div>
+        <div class="oobe8">
+            <h1>Готово. Перезавантажте комп'ютер для продовження</h1>
+            <button onclick="reboot()">Перезавантажити</button>
+        </div>
+    </div>
+    <div class="wi-fi-error-screen">
+        <h2>System Error: Продовжити користуватись RoMan OS 1.0 beta неможливо, оскільки процес Wi-Fi-Virus.sp видалив
+            папку Settings
+        </h2>
+        <h2>Перезавантажте комп'ютер та перевстановіть систему заново для продовження</h2>
+        <button onclick="fatalReboot()">Перезавантажити</button>
+    </div>
+
+</body>
+
+</html>
