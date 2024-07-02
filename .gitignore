@@ -1,0 +1,3 @@
+dist/RoManOS-win32-x64.zip
+node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+dist/RoManOS-darwin-x64/RoManOS.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
