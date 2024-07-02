@@ -19,6 +19,7 @@
     "electron-is-dev": "^3.0.1",
     "electron-reload": "^2.0.0-alpha.1",
     "git-filter-repo": "^0.0.30",
+    "puppeteer-chromium-resolver": "^22.0.0",
     "puppeteer-core": "^22.12.1"
   }
 }

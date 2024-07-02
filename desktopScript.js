@@ -172,12 +172,8 @@ function calculateResult() {
 }
 
 function loadURL() {
-    let url = document.getElementById('browser-url').value;
-    let iframe = document.getElementById('browser-frame');
-    if (!url.startsWith('http')) {
-        url = 'http://' + url;
-    }
-    iframe.src = url;
+    const url = document.querySelector('#browser-url').value;
+    window.electron.openBrowser(url);
 }
 
 function openFolder(path) {
