@@ -26,6 +26,10 @@ ipcMain.on('load-page', (event, page) => {
   mainWindow.loadFile(pagePath);
 });
 
+ipcMain.on('open-browser', (event, url) => {
+  createBrowserWindow(url);
+});
+
 app.on("window-all-closed", () => {
   app.quit()
 })

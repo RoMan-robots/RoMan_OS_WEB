@@ -173,7 +173,8 @@ function calculateResult() {
 
 function loadURL() {
     const url = document.querySelector('#browser-url').value;
-    window.electron.openBrowser(url);
+    const completeUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
+    window.open(completeUrl, '_blank', 'width=1200,height=800');
 }
 
 function openFolder(path) {
