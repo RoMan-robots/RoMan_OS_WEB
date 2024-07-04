@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -28,6 +28,17 @@ ipcMain.on('load-page', (event, page) => {
 
 ipcMain.on('open-browser', (event, url) => {
   createBrowserWindow(url);
+});
+
+ipcMain.handle('show-password-dialog', async () => {
+  const result = await dialog.showMessageBox(mainWindow, {
+      type: 'question',
+      buttons: ['OK'],
+      title: 'Введіть пароль',
+      message: 'Будь ласка, введіть пароль для підтвердження:',
+      input: { type: 'password' }
+  });
+  return result.response === 0 ? result.inputValue : null;
 });
 
 app.on("window-all-closed", () => {

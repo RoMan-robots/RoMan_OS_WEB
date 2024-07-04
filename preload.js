@@ -6,3 +6,6 @@ contextBridge.exposeInMainWorld('electron', {
   openBrowser: (url) => ipcRenderer.send('open-browser', url),
   ipcRenderer: ipcRenderer
 });
+contextBridge.exposeInMainWorld('electronAPI', {
+  showPasswordDialog: () => ipcRenderer.invoke('show-password-dialog')
+});

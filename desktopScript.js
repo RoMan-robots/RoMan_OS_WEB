@@ -173,8 +173,30 @@ function calculateResult() {
 
 function loadURL() {
     const url = document.querySelector('#browser-url').value;
-    const completeUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
+    const completeUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`;
     window.open(completeUrl, '_blank', 'width=1200,height=800');
+}
+
+function openFile(file){
+    if(file == "reinstaller.rosa") {
+        deleteSystem("reinstall");
+    } else if(file == "oskiller.rosa") {
+        let step = 0;
+        const content = document.querySelector('.desktop');
+        const interval = setInterval(() => {
+            if (step > 250) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    deleteSystem('virus');
+                }, 2000);
+            } else {
+                content.style.transform = `rotate(${step * 1.8}deg)`;
+                content.style.filter = `grayscale(${step}%)`;
+                content.style.filter += ` sepia(${step}%)`;
+                step++;
+            }
+        }, 15)
+    }
 }
 
 function openFolder(path) {
@@ -190,7 +212,7 @@ function openFolder(path) {
             fileList.appendChild(fileElement);
             fileElement.style.cursor = 'pointer';
             fileElement.onclick = () => {
-                openFile();
+                openFile(file);
             }
         });
 
@@ -308,19 +330,37 @@ function disconnect() {
     localStorage.removeItem("wifi")
 }
 
-function deleteSystem() {
-    if (!confirm("Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних в межі цього додатку і вам прийдеться перевстановити систему у разі повторного використання!")) {
-        return;
+async function resetSystem() {
+    const confirmed = confirm('Ви дійсно бажаєте скинути систему до заводських налаштувань?');
+    if (confirmed) {
+        const password = await window.electronAPI.showPasswordDialog();
+        if (password === localStorage.getItem("password")) {
+            const keysToRemove = ['password', 'reason', 'notes', 'adminName', 'timezone', 'wifi'];
+            keysToRemove.forEach(key => {
+                localStorage.removeItem(key);
+            });
+            localStorage.setItem("reason", "oobe")
+            reboot();
+        } else {
+            alert('Невірний пароль!');
+        }
     }
+}
 
-
-    const keysToRemove = ['password', 'reason', 'notes', "adminName", "timezone", "wifi"];
-
-    keysToRemove.forEach(key => {
-        localStorage.removeItem(key);
-    });
-
-    reboot()
+async function deleteSystem() {
+    const confirmed = confirm('Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних і вам прийдеться перевстановити систему у разі повторного використання!');
+    if (confirmed) {
+        const password = await window.electronAPI.showPasswordDialog();
+        if (password === localStorage.getItem('password')) {
+            const keysToRemove = ['password', 'reason', 'notes', 'adminName', 'timezone', 'wifi'];
+            keysToRemove.forEach(key => {
+                localStorage.removeItem(key);
+            });
+            reboot();
+        } else {
+            alert('Невірний пароль!');
+        }
+    }
 }
 
 function reboot() {

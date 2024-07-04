@@ -222,34 +222,8 @@
         <div class="app-content">
             <h1>Налаштування</h1>
             <div class="actions">
-                <h2>Оберіть категорію</h2>
-                <button>Wi-Fi</button>
-                <button>Акаунт та пароль</button>
-                <button>Dock</button>
-                <button>Дата і час</button>
+                <button onclick="resetSystem()">Переналаштувати систему</button>
                 <button onclick="deleteSystem()">Видалення системи</button>
-            </div>
-            <div class="wifi">
-                <h2>Підключення: <span class="wifi-connection"></span></h2>
-                <p>Обрати іншу мережу:</p>
-                <select name="Wi-Fi Select" id="wi-fi-select">
-                    <option value="wi-fi-premium">Wi-Fi Premium</option>
-                    <option value="wi-fi-virus">Wi-Fi Free No viruses no scam</option>
-                    <option value="wi-fi-free">Wi-Fi Really Free</option>
-                    <option value="wi-fi-server">Wi-Fi Server Professional</option>
-                </select>
-                <button onclick="closeApp('settings')">Підключитися пізніше</button>
-                <button onclick="disconnect()">Відключитися від мережі</button>
-                <button onclick="selectWiFi()">Обрати</button>
-            </div>
-            <div class="account&password">
-                <div class="account"></div>
-                <div class="password"></div>
-                <h2>Акаунт та пароль</h2>
-                <p>Теперішнє ім'я адміністратора:</p>
-                <input type="text">
-                <button>Змінити пароль</button>
-                <button>Змінити ім'я адміністратора</button>
             </div>
         </div>
     </div>
