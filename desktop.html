@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="node_modules/alertifyjs/build/alertify.min.js" defer></script>
     <script src="desktopScript.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
     </style>
+    <link rel="stylesheet" href="node_modules/alertifyjs/build/css/alertify.min.css">
+    <link rel="stylesheet" href="node_modules/alertifyjs/build/css/themes/default.min.css">
     <link rel="stylesheet" href="style.css">
     <title>RoMan OS</title>
 </head>
@@ -191,7 +194,7 @@
             <h2>Від RoMan Devs Inc. 2024-2024. Усі права захищені.</h2>
             <h3>Характеристики RoMan PC Emulator:</h3>
             <ul>
-                <li>GPU: Nvidia GeForce RTX 4060</li>
+                <li>GPU: Nvidia GeForce RTX 4060 Ti</li>
                 <li>CPU: Intel Core i5-12400F</li>
                 <li>RAM: 16GB Kingston Fury RGB 3200Mhz DDR4 2x</li>
                 <li>ROM: Samsung 970 EVO Plus SSD 128GB</li>
@@ -222,9 +225,22 @@
         <div class="app-content">
             <h1>Налаштування</h1>
             <div class="actions">
-                <button onclick="resetSystem()">Переналаштувати систему</button>
-                <button onclick="deleteSystem()">Видалення системи</button>
+                <button onclick="resetSystem('standard')">Переналаштувати систему</button>
+                <button onclick="deleteSystem('standard')">Видалення системи</button>
             </div>
+        </div>
+    </div>
+    <div id="vscode" class="app-window">
+        <div class="app-header" onmousedown="startDrag(event, 'vscode')">
+            <div class="header-buttons">
+                <span class="close" onclick="closeApp('vscode')">x</span>
+            </div>
+            <span class="app-title">VSCode Import RoMan OS, 10%</span>
+        </div>
+        <div class="app-content">
+            <h1>VSCode Import RoMan OS</h1>
+            <h3>Імпортування файлів, 10% завершено</h3>
+            <p>Запуск програми не вдалося, відсутній ffmpeg.dll</p>
         </div>
     </div>
     <div id="all-programs" class="app-window">

@@ -155,8 +155,14 @@ function clearDisplay() {
 
 function appendToDisplay(value) {
     const display = document.getElementById('calc-display');
-    if (display.textContent === '0') {
+    const current = display.textContent;
+    
+    if (current === '0' && value !== '.') {
         display.textContent = value;
+    } else if (current === 'Error') {
+        display.textContent = value;
+    } else if (value === '.' && current.includes('.')) {
+        return;
     } else {
         display.textContent += value;
     }
@@ -164,8 +170,21 @@ function appendToDisplay(value) {
 
 function calculateResult() {
     const display = document.getElementById('calc-display');
+    const expression = display.textContent;
+    
+    if (/[\+\-\*\/]{2,}|[\.\*\/]{2,}|(\d+\.\d*\.)|(\.\d*\.\d*)|(\.\.)/.test(expression)) {
+        display.textContent = 'Error';
+        return;
+    }
+    
+    if (expression.includes('/0')) {
+        display.textContent = 'Error';
+        return;
+    }
+    
     try {
-        display.textContent = eval(display.textContent);
+        const result = eval(expression);
+        display.textContent = result;
     } catch (e) {
         display.textContent = 'Error';
     }
@@ -177,10 +196,10 @@ function loadURL() {
     window.open(completeUrl, '_blank', 'width=1200,height=800');
 }
 
-function openFile(file){
-    if(file == "reinstaller.rosa") {
+function openFile(file) {
+    if (file == "reinstaller.rosa") {
         deleteSystem("reinstall");
-    } else if(file == "oskiller.rosa") {
+    } else if (file == "oskiller.rosa") {
         let step = 0;
         const content = document.querySelector('.desktop');
         const interval = setInterval(() => {
@@ -330,37 +349,63 @@ function disconnect() {
     localStorage.removeItem("wifi")
 }
 
-async function resetSystem() {
-    const confirmed = confirm('Ви дійсно бажаєте скинути систему до заводських налаштувань?');
-    if (confirmed) {
-        const password = await window.electronAPI.showPasswordDialog();
-        if (password === localStorage.getItem("password")) {
-            const keysToRemove = ['password', 'reason', 'notes', 'adminName', 'timezone', 'wifi'];
-            keysToRemove.forEach(key => {
-                localStorage.removeItem(key);
-            });
-            localStorage.setItem("reason", "oobe")
-            reboot();
+async function hashSHA256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function resetSystem(reason) {
+    if (reason == "standard") {
+        const confirmed = confirm('Ви дійсно бажаєте скинути систему до заводських налаштувань?');
+        if (confirmed) {
+            alertify.prompt('Підтвердження', 'Будь ласка, введіть ваш пароль для підтвердження:', '',
+                async function (evt, password) {
+                    if (!await hashSHA256(password) === localStorage.getItem("password")) {
+                        alert('Невірний пароль!');
+                        return
+                    }
+                });
         } else {
-            alert('Невірний пароль!');
+            return
         }
+    } else {
+        const keysToRemove = ['password', 'reason', 'notes', 'adminName', 'timezone', 'wifi'];
+        keysToRemove.forEach(key => {
+            localStorage.removeItem(key);
+        });
+        localStorage.setItem("reason", "oobe");
+        reboot();
     }
 }
 
-async function deleteSystem() {
-    const confirmed = confirm('Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних і вам прийдеться перевстановити систему у разі повторного використання!');
-    if (confirmed) {
-        const password = await window.electronAPI.showPasswordDialog();
-        if (password === localStorage.getItem('password')) {
-            const keysToRemove = ['password', 'reason', 'notes', 'adminName', 'timezone', 'wifi'];
-            keysToRemove.forEach(key => {
-                localStorage.removeItem(key);
-            });
-            reboot();
+async function deleteSystem(reason) {
+    if (reason == "standard") {
+        const confirmed = confirm('Ви дійсно бажаєте видалити систему? Це призведе до видалення усіх даних і вам прийдеться перевстановити систему у разі повторного використання!');
+        if (confirmed) {
+            alertify.prompt('Підтвердження', 'Будь ласка, введіть ваш пароль для підтвердження:', '',
+                async function (evt, password) {
+                    if (!await hashSHA256(password) === localStorage.getItem('password')) {
+                        alert('Невірний пароль!');
+                        return
+                    }
+                }),
+                function () {
+                    return;
+                }
         } else {
-            alert('Невірний пароль!');
+            return;
         }
     }
+
+
+    const keysToRemove = ['password', 'reason', 'notes', 'adminName', 'timezone', 'wifi'];
+    keysToRemove.forEach(key => {
+        localStorage.removeItem(key);
+    });
+    reboot();
+
 }
 
 function reboot() {
